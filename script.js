@@ -37,6 +37,14 @@ const acButton = document.querySelector('button[operator-key="AC"]');
 // console.log(operatorButtons);
 //
 function numClick(e) {
+  if (afterEquals) {
+    firstNum = 0;
+    secondNum = 0;
+    displayValue = "";
+    display.textContent = "";
+    firstRun = 1;
+    afterEquals = 0;
+  }
   buttonValue = e.target.textContent;
   displayValue = displayValue + buttonValue;
   display.textContent = displayValue;
@@ -47,13 +55,16 @@ function operatorClick(e) {
     firstNum = Number(displayValue);
     displayValue = "";
     firstRun -= 1;
+    afterEquals = 0;
   } else {
-    operator = e.target.getAttribute("operator-key");
     secondNum = Number(displayValue);
+    console.log(firstNum, secondNum, operator);
     displayValue = operate(firstNum, secondNum, operator);
+    operator = e.target.getAttribute("operator-key");
     display.textContent = displayValue;
     firstNum = displayValue;
     displayValue = "";
+    afterEquals = 0;
   }
 }
 /*Event Listener fro Number Buttons & Operator Buttons
@@ -70,6 +81,7 @@ equalButton.addEventListener("click", function () {
   displayValue = operate(firstNum, secondNum, operator);
   display.textContent = displayValue;
   firstRun = 1;
+  afterEquals = 1;
 });
 /* Event Listener for AC Button
  */
