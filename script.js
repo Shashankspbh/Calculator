@@ -78,7 +78,7 @@ operatorButtons.forEach((button) =>
 /*Event Listener for Equal Button
  */
 equalButton.addEventListener("click", function () {
-  if (!afterEquals) {
+  if (!afterEquals && !firstRun) {
     secondNum = Number(displayValue);
     console.log(firstNum, secondNum, operator);
     displayValue = operate(firstNum, secondNum, operator);
@@ -100,6 +100,14 @@ acButton.addEventListener("click", function () {
 // Negative Button Add Event Listner
 
 negativeButton.addEventListener("click", () => {
-  displayValue = String(Number(displayValue) * -1);
-  display.textContent = displayValue;
+  if (displayValue == "") {
+    displayValue = "-";
+    display.textContent = "-";
+  } else if (displayValue == "-") {
+    displayValue = "";
+    display.textContent = "";
+  } else {
+    displayValue = String(Number(displayValue) * -1);
+    display.textContent = displayValue;
+  }
 });
