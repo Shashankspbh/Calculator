@@ -76,12 +76,14 @@ operatorButtons.forEach((button) =>
 /*Event Listener for Equal Button
  */
 equalButton.addEventListener("click", function () {
-  secondNum = Number(displayValue);
-  //   console.log(firstNum, secondNum, operator);
-  displayValue = operate(firstNum, secondNum, operator);
-  display.textContent = displayValue;
-  firstRun = 1;
-  afterEquals = 1;
+  if (!afterEquals) {
+    secondNum = Number(displayValue);
+    console.log(firstNum, secondNum, operator);
+    displayValue = operate(firstNum, secondNum, operator);
+    display.textContent = displayValue;
+    firstRun = 1;
+    afterEquals = 1;
+  }
 });
 /* Event Listener for AC Button
  */
