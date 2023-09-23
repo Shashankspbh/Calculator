@@ -46,8 +46,11 @@ function numClick(e) {
     afterEquals = 0;
   }
   buttonValue = e.target.textContent;
-  displayValue = displayValue + buttonValue;
-  display.textContent = displayValue;
+  if (buttonValue === "." && displayValue.includes(".")) return;
+  else {
+    displayValue = displayValue + buttonValue;
+    display.textContent = displayValue;
+  }
 }
 function operatorClick(e) {
   if (firstRun) {
