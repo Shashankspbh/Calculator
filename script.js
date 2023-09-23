@@ -45,20 +45,18 @@ function operatorClick(e) {
   if (firstRun) {
     operator = e.target.getAttribute("operator-key");
     firstNum = Number(displayValue);
-    // console.log("FirstNumber Updated to: ", firstNum);
     displayValue = "";
     firstRun -= 1;
   } else {
     operator = e.target.getAttribute("operator-key");
     secondNum = Number(displayValue);
-    // console.log(firstNum, secondNum, operator);
     displayValue = operate(firstNum, secondNum, operator);
     display.textContent = displayValue;
     firstNum = displayValue;
     displayValue = "";
   }
 }
-/*Event Listener fro Number Buttons
+/*Event Listener fro Number Buttons & Operator Buttons
  */
 numButtons.forEach((button) => button.addEventListener("click", numClick));
 operatorButtons.forEach((button) =>
