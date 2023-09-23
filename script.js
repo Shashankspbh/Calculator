@@ -12,7 +12,6 @@ let firstNum = 0;
 let secondNum = 0;
 let operator; //+
 let displayValue = ""; //5
-let numberClicks = 0;
 let firstRun = 1;
 let afterEquals = 0;
 
@@ -33,7 +32,7 @@ const operatorButtons = [...document.querySelectorAll(".operator-button")];
 const display = document.querySelector(".display");
 const equalButton = document.querySelector('button[operator-key="="]');
 const acButton = document.querySelector('button[operator-key="AC"]');
-
+const negativeButton = document.querySelector('button[operator-key="+/-"]');
 // console.log(operatorButtons);
 //
 function numClick(e) {
@@ -96,4 +95,11 @@ acButton.addEventListener("click", function () {
   displayValue = "";
   display.textContent = "";
   firstRun = 1;
+});
+
+// Negative Button Add Event Listner
+
+negativeButton.addEventListener("click", () => {
+  displayValue = String(Number(displayValue) * -1);
+  display.textContent = displayValue;
 });
