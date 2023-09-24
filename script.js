@@ -7,6 +7,8 @@ const multiply = (x, y) => x * y;
 // function fordivide
 const divide = (x, y) => x / y;
 
+const modulus = (x, y) => x % y;
+
 // Initializing Variables and operators
 let firstNum = 0;
 let secondNum = 0;
@@ -23,6 +25,7 @@ const operate = function (x, y, operator) {
   else if (operator == "-") result = subtract(x, y);
   else if (operator == "*") result = multiply(x, y);
   else if (operator == "/") result = divide(x, y);
+  else if (operator == "%") result = modulus(x, y);
   return result;
 };
 
@@ -33,6 +36,7 @@ const display = document.querySelector(".display");
 const equalButton = document.querySelector('button[key="="]');
 const acButton = document.querySelector('button[key="AC"]');
 const negativeButton = document.querySelector('button[key="+/-"]');
+const calculation = document.querySelector(".calculation");
 // console.log(operatorButtons);
 //
 function numClick(e) {
@@ -61,6 +65,7 @@ function operatorClick(e) {
   } else {
     secondNum = Number(displayValue);
     console.log(firstNum, secondNum, operator);
+    calculation.textContent = firstNum + " " + operator + " " + secondNum;
     displayValue = operate(firstNum, secondNum, operator);
     operator = e.target.getAttribute("key");
     display.textContent = displayValue;
@@ -81,6 +86,7 @@ equalButton.addEventListener("click", function () {
   if (!afterEquals && !firstRun) {
     secondNum = Number(displayValue);
     console.log(firstNum, secondNum, operator);
+    calculation.textContent = firstNum + " " + operator + " " + secondNum;
     displayValue = operate(firstNum, secondNum, operator);
     display.textContent = displayValue;
     firstRun = 1;
@@ -95,6 +101,7 @@ acButton.addEventListener("click", function () {
   displayValue = "";
   display.textContent = "";
   firstRun = 1;
+  calculation.textContent = "";
 });
 
 // Negative Button Add Event Listner
