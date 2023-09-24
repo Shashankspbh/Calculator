@@ -12,29 +12,26 @@ html {
   margin: 0;
   padding: 0;
 }
+p {
+  margin: 0%;
+  font-size: 15px;
+}
 .calculator-container {
   display: flex;
   flex-direction: column;
   /* gap: 20px; */
   border: 1px solid black;
 }
-
+.display {
+  align-self: flex-end;
+}
 .display-container {
   display: flex;
-  gap: 20px;
-  align-items: center;
+  justify-content: space-between;
+  height: 50px;
   border: 1px solid black;
 }
 .button-container {
-  display: flex;
-}
-.num-container {
-  width: 242px;
-  border: 1px solid black;
-  display: flex;
-  flex-wrap: wrap;
-}
-.operator-container {
   display: flex;
   flex-direction: column;
 }
