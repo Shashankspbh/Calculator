@@ -30,9 +30,9 @@ const operate = function (x, y, operator) {
 const numButtons = [...document.querySelectorAll(".num-button")];
 const operatorButtons = [...document.querySelectorAll(".operator-button")];
 const display = document.querySelector(".display");
-const equalButton = document.querySelector('button[operator-key="="]');
-const acButton = document.querySelector('button[operator-key="AC"]');
-const negativeButton = document.querySelector('button[operator-key="+/-"]');
+const equalButton = document.querySelector('button[key="="]');
+const acButton = document.querySelector('button[key="AC"]');
+const negativeButton = document.querySelector('button[key="+/-"]');
 // console.log(operatorButtons);
 //
 function numClick(e) {
@@ -53,7 +53,7 @@ function numClick(e) {
 }
 function operatorClick(e) {
   if (firstRun) {
-    operator = e.target.getAttribute("operator-key");
+    operator = e.target.getAttribute("key");
     firstNum = Number(displayValue);
     displayValue = "";
     firstRun -= 1;
@@ -62,7 +62,7 @@ function operatorClick(e) {
     secondNum = Number(displayValue);
     console.log(firstNum, secondNum, operator);
     displayValue = operate(firstNum, secondNum, operator);
-    operator = e.target.getAttribute("operator-key");
+    operator = e.target.getAttribute("key");
     display.textContent = displayValue;
     firstNum = displayValue;
     displayValue = "";

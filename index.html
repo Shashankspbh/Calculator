@@ -10,39 +10,42 @@
   <body>
     <div class="calculator-container">
       <div class="display-container">
-        <h3>Display</h3>
+        <p>Display</p>
         <div class="display"></div>
       </div>
       <div class="button-container">
-        <div class="num-container">
-          <button class="button num-button" type="button" num-key="1">1</button>
-          <button class="button num-button" type="button" num-key="2">2</button>
-          <button class="button num-button" type="button" num-key="3">3</button>
-          <button class="button num-button" type="button" num-key="4">4</button>
-          <button class="button num-button" type="button" num-key="5">5</button>
-          <button class="button num-button" type="button" num-key="6">6</button>
-          <button class="button num-button" type="button" num-key="7">7</button>
-          <button class="button num-button" type="button" num-key="8">8</button>
-          <button class="button num-button" type="button" num-key="9">9</button>
-          <button class="button num-button" type="button" num-key="0">0</button>
-          <button class="button num-button" type="button" num-key=".">.</button>
+        <div class="row">
+          <button class="button" type="button" key="AC">AC</button>
+          <button class="button" type="button" key="+/-">+/-</button>
+          <button class="button" type="button" key="%">%</button>
+          <!-- prettier-ignore -->
+          <button class="button operator-button" type="button" key="/">/</button>
         </div>
-        <div class="operator-container">
-          <button class="button operator-button" type="button" operator-key="+">
-            +
-          </button>
-          <button class="button operator-button" type="button" operator-key="-">
-            -
-          </button>
-          <button class="button operator-button" type="button" operator-key="*">
-            *
-          </button>
-          <button class="button operator-button" type="button" operator-key="/">
-            /
-          </button>
-          <button class="button" type="button" operator-key="=">=</button>
-          <button class="button" type="button" operator-key="AC">AC</button>
-          <button class="button" type="button" operator-key="+/-">+/-</button>
+        <div class="row">
+          <button class="button num-button" type="button" key="7">7</button>
+          <button class="button num-button" type="button" key="8">8</button>
+          <button class="button num-button" type="button" key="9">9</button>
+          <!-- prettier-ignore -->
+          <button class="button operator-button" type="button" key="*">*</button>
+        </div>
+        <div class="row">
+          <button class="button num-button" type="button" key="4">4</button>
+          <button class="button num-button" type="button" key="5">5</button>
+          <button class="button num-button" type="button" key="6">6</button>
+          <!-- prettier-ignore -->
+          <button class="button operator-button" type="button" key="-">-</button>
+        </div>
+        <div class="row">
+          <button class="button num-button" type="button" key="1">1</button>
+          <button class="button num-button" type="button" key="2">2</button>
+          <button class="button num-button" type="button" key="3">3</button>
+          <!-- prettier-ignore -->
+          <button class="button operator-button" type="button" key="+">+</button>
+        </div>
+        <div class="row">
+          <button class="button num-button" type="button" key="0">0</button>
+          <button class="button num-button" type="button" key=".">.</button>
+          <button class="button" type="button" key="=">=</button>
         </div>
       </div>
     </div>
