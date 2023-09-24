@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "7segment";
+  src: url(./Font/7segment.woff);
+}
 * {
   box-sizing: border-box;
 }
@@ -6,37 +10,51 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  font-family: "7segment";
 }
 body,
 html {
   margin: 0;
   padding: 0;
 }
-p {
-  margin: 0%;
-  font-size: 15px;
-}
+
 .calculator-container {
+  padding: 10px;
+  height: 300px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   /* gap: 20px; */
   border: 1px solid black;
 }
+
 .display {
   align-self: flex-end;
+  /* font-family: "7segment"; */
+  font-size: 40px;
+  font-weight: 300;
 }
 .display-container {
   display: flex;
   justify-content: space-between;
-  height: 50px;
+  height: 70px;
   border: 1px solid black;
 }
 .button-container {
   display: flex;
   flex-direction: column;
+  /* border: 1px solid black; */
+  /* gap: 5px; */
+}
+.row {
+  display: flex;
 }
 
 .button {
-  width: 80px;
-  height: 30px;
+  width: 70px;
+  height: 40px;
+  /* border: 1px solid black; */
+}
+button[key="0"] {
+  flex-grow: 1;
 }
