@@ -3,15 +3,43 @@
 }
 body {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+.calculator-container {
+  display: flex;
+  flex-direction: column;
+  /* gap: 20px; */
+  border: 1px solid black;
+}
+
 .display-container {
   display: flex;
   gap: 20px;
   align-items: center;
+  border: 1px solid black;
 }
+.button-container {
+  display: flex;
+}
+.num-container {
+  width: 242px;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+.operator-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .button {
-  width: 50px;
+  width: 80px;
   height: 30px;
 }
