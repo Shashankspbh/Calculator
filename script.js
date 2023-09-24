@@ -5,7 +5,7 @@ const subtract = (x, y) => x - y;
 // function for multiply
 const multiply = (x, y) => x * y;
 // function fordivide
-const divide = (x, y) => x / y;
+const divide = (x, y) => (x / y).toFixed(3);
 
 const modulus = (x, y) => x % y;
 
