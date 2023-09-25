@@ -7,10 +7,12 @@
 }
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  gap: 30px;
   align-items: center;
   min-height: 100vh;
-  font-family: "7segment";
+  font-family: "Roboto";
   /* background-color: #050308; */
   background-color: #626262;
 }
@@ -22,12 +24,13 @@ html {
 
 .calculator-container {
   padding: 10px;
-  height: 500px;
+  /* height: 600px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #1c1b1f;
   border-radius: 10px;
+  overflow: auto;
 }
 .calculation {
   font-size: 20px;
@@ -47,6 +50,7 @@ html {
   border-radius: 7px;
   margin: 10px;
   color: #e5e1e6;
+  min-height: 150px;
   flex-grow: 1;
 }
 .button-container {
@@ -59,15 +63,25 @@ html {
 }
 
 .button {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   font-size: 20px;
   border: none;
-  margin: 3px;
+  margin: 5px;
   padding: 0;
   border-radius: 100px;
   appearance: none;
   color: #e4dff9;
+  /* box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(255, 255, 255, 0.15);
+}
+.button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .operator-button,
 button[key="+/-"] {
