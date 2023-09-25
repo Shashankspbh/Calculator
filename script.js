@@ -45,19 +45,21 @@ function numClick(e) {
     secondNum = 0;
     displayValue = "";
     display.textContent = "";
-    firstRun = 1;
     afterEquals = 0;
+    firstRun = 1;
   }
-  buttonValue = e.target.textContent;
+  buttonValue = e.key || e.target.textContent;
   if (buttonValue === "." && displayValue.includes(".")) return;
   else {
     displayValue = displayValue + buttonValue;
     display.textContent = displayValue;
   }
 }
+//
+//
 function operatorClick(e) {
   if (firstRun) {
-    operator = e.target.getAttribute("key");
+    operator = e.key || e.target.getAttribute("key");
     firstNum = Number(displayValue);
     displayValue = "";
     firstRun -= 1;
@@ -67,7 +69,7 @@ function operatorClick(e) {
     console.log(firstNum, secondNum, operator);
     calculation.textContent = firstNum + " " + operator + " " + secondNum;
     displayValue = operate(firstNum, secondNum, operator);
-    operator = e.target.getAttribute("key");
+    operator = e.key || e.target.getAttribute("key");
     display.textContent = displayValue;
     firstNum = displayValue;
     displayValue = "";
@@ -77,12 +79,12 @@ function operatorClick(e) {
 /*Event Listener fro Number Buttons & Operator Buttons
  */
 numButtons.forEach((button) => button.addEventListener("click", numClick));
-operatorButtons.forEach((button) =>
-  button.addEventListener("click", operatorClick)
-);
+// prettier-ignore
+operatorButtons.forEach((button) => button.addEventListener("click", operatorClick));
+
 /*Event Listener for Equal Button
  */
-equalButton.addEventListener("click", function () {
+function equalButtonEvent() {
   if (!afterEquals && !firstRun) {
     secondNum = Number(displayValue);
     console.log(firstNum, secondNum, operator);
@@ -92,17 +94,19 @@ equalButton.addEventListener("click", function () {
     firstRun = 1;
     afterEquals = 1;
   }
-});
+}
+equalButton.addEventListener("click", equalButtonEvent);
 /* Event Listener for AC Button
  */
-acButton.addEventListener("click", function () {
+function acButtonEvent() {
   firstNum = 0;
   secondNum = 0;
   displayValue = "";
   display.textContent = "";
   firstRun = 1;
   calculation.textContent = "";
-});
+}
+acButton.addEventListener("click", acButtonEvent);
 
 // Negative Button Add Event Listner
 
@@ -117,4 +121,31 @@ negativeButton.addEventListener("click", () => {
     displayValue = String(Number(displayValue) * -1);
     display.textContent = displayValue;
   }
+});
+//
+// Adding Keyboard Input
+//
+
+const numKeyCodes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+
+function keyInput(e) {
+  if (numKeyCodes.includes(e.key)) numClick(e);
+}
+document.addEventListener("keydown", keyInput);
+//
+//
+const operatorKeyCodes = ["*", "/", "-", "+", "%"];
+function operatorInput(e) {
+  if (operatorKeyCodes.includes(e.key)) operatorClick(e);
+}
+document.addEventListener("keydown", operatorInput);
+//
+//
+document.addEventListener("keydown", (e) => {
+  if (e.key == "=" || e.key == "Enter") equalButtonEvent();
+});
+//
+//
+document.addEventListener("keydown", (e) => {
+  if (e.key == "Escape") acButtonEvent();
 });
