@@ -32,12 +32,22 @@ const operate = function (x, y, operator) {
 //Initialize the DOM
 const numButtons = [...document.querySelectorAll(".num-button")];
 const operatorButtons = [...document.querySelectorAll(".operator-button")];
+const allButtons = [...document.querySelectorAll("button")];
 const display = document.querySelector(".display");
 const equalButton = document.querySelector('button[key="="]');
 const acButton = document.querySelector('button[key="AC"]');
 const negativeButton = document.querySelector('button[key="+/-"]');
 const calculation = document.querySelector(".calculation");
 // console.log(operatorButtons);
+//
+function addTransition(buttonValue) {
+  const key = document.querySelector(`button[key="${buttonValue.trim()}"]`);
+  key.classList.add("selected");
+}
+function removeTransition(e) {
+  e.target.classList.remove("selected");
+}
+
 //
 function numClick(e) {
   if (afterEquals) {
@@ -48,7 +58,8 @@ function numClick(e) {
     afterEquals = 0;
     firstRun = 1;
   }
-  buttonValue = e.key || e.target.textContent;
+  const buttonValue = e.key || e.target.textContent;
+  addTransition(buttonValue);
   if (buttonValue === "." && displayValue.includes(".")) return;
   else {
     displayValue = displayValue + buttonValue;
@@ -58,6 +69,7 @@ function numClick(e) {
 //
 //
 function operatorClick(e) {
+  addTransition(e.key || e.target.textContent);
   if (firstRun) {
     operator = e.key || e.target.getAttribute("key");
     firstNum = Number(displayValue);
@@ -65,26 +77,31 @@ function operatorClick(e) {
     firstRun -= 1;
     afterEquals = 0;
   } else {
-    secondNum = Number(displayValue);
-    console.log(firstNum, secondNum, operator);
-    calculation.textContent = firstNum + " " + operator + " " + secondNum;
-    displayValue = operate(firstNum, secondNum, operator);
-    operator = e.key || e.target.getAttribute("key");
-    display.textContent = displayValue;
-    firstNum = displayValue;
-    displayValue = "";
-    afterEquals = 0;
+    if (displayValue != "") {
+      secondNum = Number(displayValue);
+      // console.log(firstNum, secondNum, operator);
+      calculation.textContent = firstNum + " " + operator + " " + secondNum;
+      displayValue = operate(firstNum, secondNum, operator);
+      operator = e.key || e.target.getAttribute("key");
+      display.textContent = displayValue;
+      firstNum = displayValue;
+      displayValue = "";
+      afterEquals = 0;
+    }
   }
 }
 /*Event Listener fro Number Buttons & Operator Buttons
  */
 numButtons.forEach((button) => button.addEventListener("click", numClick));
 // prettier-ignore
+allButtons.forEach((button) => button.addEventListener("transitionend", removeTransition));
+// prettier-ignore
 operatorButtons.forEach((button) => button.addEventListener("click", operatorClick));
 
 /*Event Listener for Equal Button
  */
-function equalButtonEvent() {
+function equalButtonEvent(e) {
+  addTransition("=");
   if (!afterEquals && !firstRun) {
     secondNum = Number(displayValue);
     console.log(firstNum, secondNum, operator);
@@ -98,7 +115,8 @@ function equalButtonEvent() {
 equalButton.addEventListener("click", equalButtonEvent);
 /* Event Listener for AC Button
  */
-function acButtonEvent() {
+function acButtonEvent(e) {
+  addTransition("AC");
   firstNum = 0;
   secondNum = 0;
   displayValue = "";
@@ -110,7 +128,8 @@ acButton.addEventListener("click", acButtonEvent);
 
 // Negative Button Add Event Listner
 
-negativeButton.addEventListener("click", () => {
+negativeButton.addEventListener("click", (e) => {
+  addTransition(e.key || e.target.textContent);
   if (displayValue == "") {
     displayValue = "-";
     display.textContent = "-";
